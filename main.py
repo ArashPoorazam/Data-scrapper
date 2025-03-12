@@ -4,8 +4,6 @@ import requests
 import telebot
 import logging
 import time
-from telebot.storage import StateMemoryStorage
-from telebot import custom_filters
 
 # Files
 import Description as Des
@@ -23,8 +21,7 @@ logging.basicConfig(
 )
 
 # Create a bot object
-state_storage = StateMemoryStorage()
-bot = telebot.TeleBot(Keys.API_KEY, state_storage=state_storage)
+bot = telebot.TeleBot(Keys.API_KEY)
 logging.info('Start bot...')
 
 # start command
@@ -88,8 +85,7 @@ def message_response(user_message):
     bot.send_message(user_message.chat.id, response)
 
 if __name__ == '__main__':
-    bot.add_custom_filter(custom_filters.StateFilter(bot))
-
+    # start
     logging.info('start pulling...')
     retry_delay = 5  # Initial delay in seconds
 
